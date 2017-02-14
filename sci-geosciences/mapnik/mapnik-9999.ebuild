@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 
 inherit eutils scons-utils toolchain-funcs git-r3
 
@@ -38,17 +38,13 @@ RDEPEND="
     postgres? ( >=dev-db/postgresql-8.3:* )
     gdal? ( sci-libs/gdal )
     sqlite? ( dev-db/sqlite:3 )"
-DEPEND="${RDEPEND}"
+DEPEND="$RDEPEND"
 
 PATCHES=(
-    "${FILESDIR}/${PN}-2.2.0-configure-only-once.patch"
-    "${FILESDIR}/${PN}-2.2.0-dont-run-ldconfig.patch"
-    "${FILESDIR}/${PN}-2.2.0-scons.patch"
+    "$FILESDIR/configure-only-once.patch"
+    "$FILESDIR/dont-run-ldconfig.patch"
+    "$FILESDIR/scons.patch"
 )
-
-src_unpack() {
-    git-r3_src_unpack
-}
 
 src_prepare() {
     default
@@ -60,7 +56,7 @@ src_prepare() {
 
     # force user flags, optimization level
     sed -i -e "s:\-O%s:%s:" \
-        -i -e "s:env\['OPTIMIZATION'\]:'${CXXFLAGS}':" \
+        -i -e "s:env\['OPTIMIZATION'\]:'$CXXFLAGS':" \
         SConstruct || die
 }
 
@@ -73,9 +69,9 @@ src_configure() {
     MYSCONS=(
         "CC=$(tc-getCC)"
         "CXX=$(tc-getCXX)"
-        "INPUT_PLUGINS=${PLUGINS}"
+        "INPUT_PLUGINS=$PLUGINS"
         "PREFIX=/usr"
-        "DESTDIR=${D}"
+        "DESTDIR=$D"
         "XMLPARSER=libxml2"
         "LINKING=shared"
         "RUNTIME_LINK=shared"
@@ -87,8 +83,8 @@ src_configure() {
         XML_DEBUG="$(usex debug 1 0)"
         DEMO="$(usex doc 1 0)"
         SAMPLE_INPUT_PLUGINS="$(usex doc 1 0)"
-        "CUSTOM_LDFLAGS=${LDFLAGS}"
-        "CUSTOM_LDFLAGS+=-L${ED}/usr/$(get_libdir)"
+        "CUSTOM_LDFLAGS=$LDFLAGS"
+        "CUSTOM_LDFLAGS+=-L$ED/usr/$(get_libdir)"
     )
     escons "${MYSCONS[@]}" configure
 }
@@ -98,12 +94,13 @@ src_compile() {
 }
 
 src_install() {
-    escons "${MYSCONS[@]}" DESTDIR="${D}" install
+    escons "${MYSCONS[@]}" DESTDIR="$D" install
 
     dodoc AUTHORS.md README.md CHANGELOG.md
 }
 
 pkg_postinst() {
+    default
     elog ""
     elog "See the home page or wiki (https://github.com/mapnik/mapnik/wiki) for more info"
     elog "or the installed examples for the default mapnik ogcserver config."
