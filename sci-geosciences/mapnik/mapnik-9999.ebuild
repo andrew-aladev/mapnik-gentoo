@@ -100,7 +100,6 @@ src_install() {
 }
 
 pkg_postinst() {
-    default
     elog ""
     elog "See the home page or wiki (https://github.com/mapnik/mapnik/wiki) for more info"
     elog "or the installed examples for the default mapnik ogcserver config."
