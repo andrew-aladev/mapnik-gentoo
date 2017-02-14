@@ -1,0 +1,26 @@
+diff -Naur python-mapnik-9999.old/setup.py python-mapnik-9999/setup.py
+--- python-mapnik-9999.old/setup.py     2017-01-19 08:42:25.165927328 +0100
++++ python-mapnik-9999/setup.py 2017-01-19 08:42:42.574517707 +0100
+@@ -82,22 +82,6 @@
+         print("\n".join(get_boost_library_names()))
+
+
+-cflags = sysconfig.get_config_var('CFLAGS')
+-sysconfig._config_vars['CFLAGS'] = re.sub(
+-    ' +', ' ', cflags.replace('-g ', '').replace('-Os', '').replace('-arch i386', ''))
+-opt = sysconfig.get_config_var('OPT')
+-sysconfig._config_vars['OPT'] = re.sub(
+-    ' +', ' ', opt.replace('-g ', '').replace('-Os', ''))
+-ldshared = sysconfig.get_config_var('LDSHARED')
+-sysconfig._config_vars['LDSHARED'] = re.sub(
+-    ' +', ' ', ldshared.replace('-g ', '').replace('-Os', '').replace('-arch i386', ''))
+-ldflags = sysconfig.get_config_var('LDFLAGS')
+-sysconfig._config_vars['LDFLAGS'] = re.sub(
+-    ' +', ' ', ldflags.replace('-g ', '').replace('-Os', '').replace('-arch i386', ''))
+-pycflags = sysconfig.get_config_var('PY_CFLAGS')
+-sysconfig._config_vars['PY_CFLAGS'] = re.sub(
+-    ' +', ' ', pycflags.replace('-g ', '').replace('-Os', '').replace('-arch i386', ''))
+-sysconfig._config_vars['CFLAGSFORSHARED'] = ''
+ os.environ['ARCHFLAGS'] = ''
+
+ if os.environ.get("MASON_BUILD", "false") == "true":

@@ -1,0 +1,12 @@
+diff -Naur python-mapnik-3.0.9999.old/build.py python-mapnik-3.0.9999/build.py
+--- python-mapnik-3.0.9999.old/build.py 2017-01-19 17:50:23.852609700 +0100
++++ python-mapnik-3.0.9999/build.py     2017-01-19 18:00:12.115174107 +0100
+@@ -13,7 +13,7 @@
+         print stderr
+
+
+-prefix = env['PREFIX']
++prefix = env['${D}''PREFIX']
+ target_path = os.path.normpath(sysconfig.get_python_lib() + os.path.sep + env['MAPNIK_NAME'])
+
+ py_env = env.Clone()

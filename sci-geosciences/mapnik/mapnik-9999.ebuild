@@ -10,7 +10,7 @@ DESCRIPTION="A Free Toolkit for developing mapping applications."
 HOMEPAGE="https://github.com/mapnik/mapnik"
 EGIT_REPO_URI="https://github.com/mapnik/mapnik.git"
 
-LICENSE="LGPL-3"
+LICENSE="LGPL-2.1"
 SLOT="0/9999"
 KEYWORDS=""
 
