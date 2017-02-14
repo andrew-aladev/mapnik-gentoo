@@ -42,10 +42,11 @@ src_prepare() {
 }
 
 python_compile() {
-    python_version="$EPYTHON/python/"
-    BOOST_PYTHON_LIB="boost_python-$python_version" distutils-r1_python_compile
+    PYTHON_POSTFIX=$(echo "$EPYTHON" | sed "s/python/python-/")
+    export BOOST_PYTHON_LIB="boost_$PYTHON_POSTFIX"
+    distutils-r1_python_compile
 }
 
 python_install() {
-    BOOST_PYTHON_LIB="boost_python-$python_version" distutils-r1_python_install
+    distutils-r1_python_install
 }
