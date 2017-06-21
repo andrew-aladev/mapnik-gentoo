@@ -31,7 +31,6 @@ DEPEND="$RDEPEND"
 
 PATCHES=(
     "$FILESDIR/flags.patch"
-    "$FILESDIR/paths.patch"
 )
 
 src_prepare() {
