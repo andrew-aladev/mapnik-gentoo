@@ -58,6 +58,10 @@ src_prepare() {
     sed -i -e "s:\-O%s:%s:" \
         -i -e "s:env\['OPTIMIZATION'\]:'$CXXFLAGS':" \
         SConstruct || die
+
+    # force lib32/lib64 value into SConstruct - Bug #630948
+    # (scons is broken, it's ignoring LIBDIR value)
+    sed -i -e "s:^LIBDIR_SCHEMA_DEFAULT='lib'$:LIBDIR_SCHEMA_DEFAULT=\'$(get_libdir)\':" SConstruct || die
 }
 
 src_configure() {
