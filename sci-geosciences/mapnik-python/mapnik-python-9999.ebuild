@@ -11,6 +11,7 @@ inherit distutils-r1 git-r3
 DESCRIPTION="Python bindings for mapnik."
 HOMEPAGE="https://github.com/mapnik/python-mapnik"
 EGIT_REPO_URI="https://github.com/mapnik/python-mapnik.git"
+EGIT_BRANCH="v3.0.x"
 
 LICENSE="LGPL-2.1"
 SLOT="0/9999"
