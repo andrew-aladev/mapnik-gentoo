@@ -9,6 +9,7 @@ inherit eutils scons-utils toolchain-funcs git-r3
 DESCRIPTION="A Free Toolkit for developing mapping applications."
 HOMEPAGE="https://github.com/mapnik/mapnik"
 EGIT_REPO_URI="https://github.com/mapnik/mapnik.git"
+EGIT_BRANCH="v3.0.x"
 
 LICENSE="LGPL-2.1"
 SLOT="0/9999"
